@@ -12,7 +12,11 @@
     "prebuild": "rimraf dist",
     "build": "run-p build:*",
     "build:common": "tsc",
-    "build:esm": "tsc -p tsconfig.esm.json"
+    "build:esm": "tsc -p tsconfig.esm.json",
+    "lint": "run-s lint:*",
+    "lint:eslint": "eslint . --ext .ts,.tsx --fix",
+    "lint:prettier": "prettier --write .",
+    "prepare": "simple-git-hooks"
   },
   "keywords": [],
   "author": "Yuta Euchi",
@@ -30,10 +34,14 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "rimraf": "^3.0.2",
+    "simple-git-hooks": "^2.7.0",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.3"
   },
   "engines": {
     "node": ">=16"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "npm run lint"
   }
 }
